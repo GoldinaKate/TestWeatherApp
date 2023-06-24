@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="10dp"
+    android:background="@drawable/card_background">
+
+    <TextView
+        android:id="@+id/tv_sunrise_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_sunrise"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/iv_sunrise"
+        app:layout_constraintStart_toStartOf="@id/iv_sunrise"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_sunrise_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/iv_sunrise"
+        app:layout_constraintStart_toStartOf="@id/iv_sunrise"
+        app:layout_constraintTop_toBottomOf="@+id/iv_sunrise"
+        tools:text="@string/test_time" />
+
+    <TextView
+        android:id="@+id/tv_sunset_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_sunset"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/iv_sunset"
+        app:layout_constraintStart_toStartOf="@id/iv_sunset"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_sunrise"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_sunrise"
+        app:layout_constraintEnd_toStartOf="@id/iv_sunset"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sunrise_label"
+        android:contentDescription="@string/icon_label"/>
+
+    <ImageView
+        android:id="@+id/iv_sunset"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_sunset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_sunrise"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sunset_label"
+        android:contentDescription="@string/icon_label"/>
+
+    <TextView
+        android:id="@+id/tv_sunset_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/iv_sunset"
+        app:layout_constraintStart_toStartOf="@id/iv_sunset"
+        app:layout_constraintTop_toBottomOf="@+id/iv_sunset"
+        tools:text="@string/test_time" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

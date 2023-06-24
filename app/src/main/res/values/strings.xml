@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="title_activity_forecast">ForecastActivity</string>
+
+    <string name="degree_celsius_symbol">°C</string>
+    <string name="label_humidity">Влажность</string>
+    <string name="label_pressure">Давление</string>
+    <string name="label_visibility">Видимость</string>
+    <string name="label_sunrise">Рассвет</string>
+    <string name="label_sunset">Закат</string>
+    <string name="no_internet_connection">Отсутствует подключение к сети интернет!</string>
+    <string name="issues_message">Невозможно выполнить запрос, попробуйте еще раз!</string>
+    <string name="city_name">Санкт-Петербург</string>
+
+    <string name="label_wind">Ветер</string>
+    <string name="btn_forecast">Прогноз</string>
+    <string name="btn_details">Подробнее</string>
+    <string name="label_temp">Температура</string>
+    <string name="label_feels">Ощущается как</string>
+    <string name="label_clouds">Облачность</string>
+    <string name="label_rain">Осадки</string>
+
+    <string name="test_date">20 June, 2023 1:13</string>
+    <string name="test_description">небольшая облачность</string>
+    <string name="no_data">-</string>
+    <string name="test_time">15:00</string>
+    <string name="test_temp">23</string>
+    <string name="weather_icon">Weather Icon</string>
+    <string name="icon_label">Icon of data</string>
+
+</resources>
