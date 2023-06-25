@@ -182,7 +182,5 @@
                 style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

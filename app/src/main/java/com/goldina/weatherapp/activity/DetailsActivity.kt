@@ -34,7 +34,8 @@ class DetailsActivity : AppCompatActivity() {
         val dayNameFormat = SimpleDateFormat("EEEE")
         val dateFormat = SimpleDateFormat("dd MMM")
         val timeCheck = SimpleDateFormat("HH:mm")
-        timeCheck.timeZone = TimeZone.getTimeZone("UTC")
+        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+        dayNameFormat.timeZone = TimeZone.getTimeZone("UTC")
         binding.apply {
             layoutWeatherBasic.ivWeatherCondition.setImageDrawable(
                 ContextCompat.getDrawable(this@DetailsActivity,
@@ -51,7 +52,8 @@ class DetailsActivity : AppCompatActivity() {
             layoutWeatherAdditional.tvHumidity.text = "${currentWeather.main.humidity}%"
             layoutWeatherAdditional.tvPressure.text = "${currentWeather.main.pressure} гПа"
             layoutWeatherAdditional.tvWind.text = "${currentWeather.wind.speed.toInt()} м/с"
-            tvRain.text = "1 час: ${currentWeather.rain} мм"
+            val rain =currentWeather.rain ?: "0"
+            tvRain.text = "1 час: $rain мм"
             tvClouds.text = "${currentWeather.clouds.all}%"
             tvVisibility.text =  "${currentWeather.visibility} м"
             tvTemperature.text =

@@ -15,7 +15,7 @@ data class ResponseCurrentDate(
     val cod: Int,
     @Transient
     val coord: Coord,
-    val dt: Int,
+    val dt: Long,
     val id: Int,
     val main: MainX,
     val name: String,

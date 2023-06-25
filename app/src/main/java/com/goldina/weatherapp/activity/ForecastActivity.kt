@@ -65,7 +65,7 @@ class ForecastActivity : AppCompatActivity(), OnNetworkListener {
         val timeCheck = SimpleDateFormat("HH:mm")
         timeCheck.timeZone = TimeZone.getTimeZone("UTC")
         dateFormat.timeZone= TimeZone.getTimeZone("UTC")
-        dayNameFormat.timeZone= TimeZone.getTimeZone("UTS")
+        dayNameFormat.timeZone= TimeZone.getTimeZone("UTС")
         var tempMinDay = 100.0
         var tempMaxDay = -100.0
         var listHourlyOneDay = mutableListOf<DayWeather>()
