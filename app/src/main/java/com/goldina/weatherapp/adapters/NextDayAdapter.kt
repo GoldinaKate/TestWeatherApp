@@ -1,15 +1,14 @@
 package com.goldina.weatherapp.adapters
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.goldina.weatherapp.R
 import com.goldina.weatherapp.databinding.NextdayItemBinding
 import com.goldina.weatherapp.model.WeatherNextDay
 
-class NextDayAdapter(private val items: List<WeatherNextDay>, context: Context) :
+class NextDayAdapter(private val items: List<WeatherNextDay>) :
     RecyclerView.Adapter<NextDayAdapter.ViewHolder>() {
 
     private lateinit var adapter: HourlyAdapter
@@ -33,14 +32,11 @@ class NextDayAdapter(private val items: List<WeatherNextDay>, context: Context) 
     }
 
     inner class ViewHolder(private val binding: NextdayItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-        @SuppressLint("SetTextI18n")
         fun bind(weatherDay: WeatherNextDay) = with(itemView) {
-            binding.tvMaxTemp.text = "↑ ${weatherDay.tempMax.toInt()}°"
-            binding.tvMinTemp.text = "↓ ${weatherDay.tempMin.toInt()}°"
-            binding.tvDate.text = weatherDay.date
-            binding.tvDate.text = "${weatherDay.dayName}, ${weatherDay.date}"
-            adapter = HourlyAdapter(weatherDay.listHourly, context)
+            binding.tvMaxTemp.text = context.getString(R.string.temp_max,weatherDay.tempMax.toInt())
+            binding.tvMinTemp.text = context.getString(R.string.temp_min,weatherDay.tempMin.toInt())
+            binding.tvDate.text = context.getString(R.string.date,weatherDay.dayName,weatherDay.date)
+            adapter = HourlyAdapter(weatherDay.listHourly)
             binding.rvWeatherHourly.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
             binding.rvWeatherHourly.setHasFixedSize(true)
             binding.rvWeatherHourly.adapter = adapter

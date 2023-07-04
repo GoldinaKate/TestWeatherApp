@@ -8,7 +8,6 @@ import com.skydoves.sandwich.message
 import com.skydoves.sandwich.suspendOnError
 import com.skydoves.sandwich.suspendOnException
 import com.skydoves.sandwich.suspendOnSuccess
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -24,7 +23,6 @@ constructor(private val weatherRetrofit: WeatherApi){
 
     suspend fun getResponse(lat:String,lon:String,appid:String,units: String,lang:String, type: TypeData): Flow<DataState<Any>> = flow {
         DataState.Loading
-        delay(timeMillis = 1000)
         val response =  if(type == TypeData.CURRENT_WEATHER)
             weatherRetrofit.getCurrentWeatherData(lat, lon, appid, units,lang)
         else  weatherRetrofit.getNextWeatherData(lat, lon, appid, units)

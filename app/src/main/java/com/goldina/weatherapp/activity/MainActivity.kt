@@ -1,6 +1,5 @@
 package com.goldina.weatherapp.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
@@ -24,6 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), OnNetworkListener {
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity(), OnNetworkListener {
     private val viewModel: WeatherViewModel by viewModels()
     private lateinit var snack: Snackbar
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
@@ -68,8 +67,9 @@ class MainActivity : AppCompatActivity(), OnNetworkListener {
     }
 
     private fun refreshLayout() {
-        binding.refreshLayout.setColorSchemeColors(resources.getColor(R.color.colorPrimary)
-            ,resources.getColor(R.color.colorPrimaryDark))
+        binding.refreshLayout.setColorSchemeColors(
+            ContextCompat.getColor(applicationContext,R.color.colorPrimary),
+            ContextCompat.getColor(applicationContext,R.color.colorPrimaryDark))
         binding.refreshLayout.setOnRefreshListener {
             loadDataWeather()
         }
@@ -115,22 +115,21 @@ class MainActivity : AppCompatActivity(), OnNetworkListener {
            }
         }
     }
-    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     private fun setData(currentWeather: ResponseCurrentDate) {
-        val dayNameFormat = SimpleDateFormat("EEEE")
-        val dateFormat = SimpleDateFormat("dd MMM")
-        val timeCheck = SimpleDateFormat("HH:mm")
+        val dayNameFormat = SimpleDateFormat("EEEE", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
+        val timeCheck = SimpleDateFormat("HH:mm", Locale.getDefault())
         binding.apply {
             refreshLayout.isRefreshing=false
             val date=Date()
-            tvDate.text ="${dayNameFormat.format(date)}, ${dateFormat.format(date)}"
+            tvDate.text = getString(R.string.date,dayNameFormat.format(date), dateFormat.format(date))
             tvTime.text =timeCheck.format(date)
-            tvTemperature.text = "${currentWeather.main.temp.toInt()}°"
+            tvTemperature.text = getString(R.string.temp,currentWeather.main.temp.toInt())
             tvDescription.text = currentWeather.weather[0].description
-            tvFeelsLike.text = "Ощущается как ${currentWeather.main.feels_like.toInt()}°"
-            layoutDetailed.tvHumidity.text = "${currentWeather.main.humidity}%"
-            layoutDetailed.tvPressure.text = "${currentWeather.main.pressure} гПа"
-            layoutDetailed.tvWind.text = "${currentWeather.wind.speed.toInt()} м/с"
+            tvFeelsLike.text = getString(R.string.feels_like,currentWeather.main.feels_like.toInt())
+            layoutDetailed.tvHumidity.text = getString(R.string.percent,currentWeather.main.humidity)
+            layoutDetailed.tvPressure.text =  getString(R.string.pressure,currentWeather.main.pressure)
+            layoutDetailed.tvWind.text = getString(R.string.wind,currentWeather.wind.speed.toInt())
             val iconId=currentWeather.weather[0].icon
             ivIconWeather.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -172,6 +171,7 @@ class MainActivity : AppCompatActivity(), OnNetworkListener {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun registerNetworkBroadcastForNougat() {
         registerReceiver(networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }

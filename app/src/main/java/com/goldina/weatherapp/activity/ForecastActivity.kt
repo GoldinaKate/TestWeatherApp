@@ -1,6 +1,5 @@
 package com.goldina.weatherapp.activity
 
-import android.annotation.SuppressLint
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -25,6 +24,7 @@ import com.goldina.weatherapp.viewmodel.WeatherViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.TimeZone
 
 @AndroidEntryPoint
@@ -58,11 +58,10 @@ class ForecastActivity : AppCompatActivity(), OnNetworkListener {
         refreshLayout()
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun setData(nextDay: ResponseNextDay) {
-        val dayNameFormat = SimpleDateFormat("EEEE")
-        val dateFormat = SimpleDateFormat("dd MMM")
-        val timeCheck = SimpleDateFormat("HH:mm")
+        val dayNameFormat = SimpleDateFormat("EEEE", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
+        val timeCheck = SimpleDateFormat("HH:mm", Locale.getDefault())
         timeCheck.timeZone = TimeZone.getTimeZone("UTC")
         dateFormat.timeZone= TimeZone.getTimeZone("UTC")
         dayNameFormat.timeZone= TimeZone.getTimeZone("UTС")
@@ -93,7 +92,7 @@ class ForecastActivity : AppCompatActivity(), OnNetworkListener {
             }
 
             binding.apply {
-                adapter = NextDayAdapter(listWeatherNextDays,this@ForecastActivity)
+                adapter = NextDayAdapter(listWeatherNextDays)
                 binding.rvWeatherDaily.layoutManager = LinearLayoutManager(baseContext)
                 binding.rvWeatherDaily.setHasFixedSize(true)
                 binding.rvWeatherDaily.adapter = adapter
@@ -151,8 +150,9 @@ class ForecastActivity : AppCompatActivity(), OnNetworkListener {
     }
 
     private fun refreshLayout() {
-        binding.refreshLayout.setColorSchemeColors(resources.getColor(R.color.colorPrimary)
-            ,resources.getColor(R.color.colorPrimaryDark))
+        binding.refreshLayout.setColorSchemeColors(
+            ContextCompat.getColor(applicationContext,R.color.colorPrimary),
+            ContextCompat.getColor(applicationContext,R.color.colorPrimaryDark))
         binding.refreshLayout.setOnRefreshListener {
             loadDataWeather()
         }

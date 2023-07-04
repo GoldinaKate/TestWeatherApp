@@ -28,4 +28,15 @@
     <string name="weather_icon">Weather Icon</string>
     <string name="icon_label">Icon of data</string>
 
+    <string name="temp">%1$d°</string>
+    <string name="temp_max">↑ %1$d°</string>
+    <string name="temp_min">↓ %1$d°</string>
+    <string name="date">%1$s, %2$s</string>
+    <string name="percent">%1$d%%</string>
+    <string name="pressure">%1$d гПа</string>
+    <string name="wind">%1$d м/с</string>
+    <string name="rain">1 час: %1$.2f мм</string>
+    <string name="visibility">%1$d м</string>
+    <string name="temp_max_min">Макс. %1$d°C\nМин. %2$d°C"</string>
+    <string name="feels_like">Ощущается как  %1$d°</string>
 </resources>
