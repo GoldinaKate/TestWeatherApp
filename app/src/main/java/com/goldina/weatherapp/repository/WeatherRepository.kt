@@ -15,14 +15,8 @@ import javax.inject.Inject
 class WeatherRepository
 @Inject
 constructor(private val weatherRetrofit: WeatherApi){
-
-    suspend fun getCurrentWeatherData(lat:String,lon:String,appid:String,units: String, lang:String)=weatherRetrofit.
-    getCurrentWeatherData(lat,lon, appid, units, lang)
-    suspend fun getNextWeatherData(lat:String,lon:String,appid:String,units: String)=weatherRetrofit.
-    getNextWeatherData(lat, lon, appid, units)
-
     suspend fun getResponse(lat:String,lon:String,appid:String,units: String,lang:String, type: TypeData): Flow<DataState<Any>> = flow {
-        DataState.Loading
+        emit(DataState.Loading)
         val response =  if(type == TypeData.CURRENT_WEATHER)
             weatherRetrofit.getCurrentWeatherData(lat, lon, appid, units,lang)
         else  weatherRetrofit.getNextWeatherData(lat, lon, appid, units)
